@@ -37,4 +37,6 @@ router.post("/login", async (req, res) => {
   } catch (error) {
     res.status(400).json({ error: "Error logging in" });
   }
-})
+});
+
+module.exports = router;
