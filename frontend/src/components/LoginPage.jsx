@@ -62,7 +62,7 @@ function LoginPage() {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}
       >
-        <h2 className="text-3xl font-bold mb-6 text-center text-indigo-400">Login to GameStore</h2>
+        <h2 className="text-3xl font-bold mb-6 text-center text-indigo-400">Login to G-Shopee</h2>
         <form onSubmit={handleLogin}>
           <input
             type="email"
