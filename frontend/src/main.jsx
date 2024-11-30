@@ -9,11 +9,11 @@ import RegisterPage from './components/RegisterPage';
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <HomePage />,
+    element: <LoginPage />,
   },
   {
-    path: '/login',
-    element: <LoginPage />,
+    path: '/home',
+    element: <HomePage />,
   },
   {
     path: '/register',
