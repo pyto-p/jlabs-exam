@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import ky from 'ky';
 import { useNavigate } from 'react-router-dom';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 function RegisterPage() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -46,7 +48,7 @@ function RegisterPage() {
       return;
     }
     try {
-      await ky.post('http://localhost:8888/api/auth/register', {
+      await ky.post(`${API_URL}/api/auth/register`, {
         json: { name, email, password },
       });
       navigate('/');
