@@ -70,7 +70,7 @@ function RegisterPage() {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}
       >
-        <h2 className="text-3xl font-bold mb-6 text-center text-indigo-400">Join GameStore</h2>
+        <h2 className="text-3xl font-bold mb-6 text-center text-indigo-400">Join G-Shopee</h2>
         {serverError && <p className="text-red-500 mb-4 text-center">{serverError}</p>}
         <form onSubmit={handleRegister}>
           <input
