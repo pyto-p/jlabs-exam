@@ -51,13 +51,13 @@ function LoginPage() {
           />
         
         {error && <p className="text-red-500 mb-4 text-center">{error}</p>}
-        
+
         <button type="submit" className="w-full bg-indigo-500 text-white py-2 rounded hover:bg-indigo-600">
           Login
         </button>
         <p className="text-sm mt-4">
           Don’t have an account?{' '}
-          <a href="/register" className="text-indigo-600">
+          <a href="/register" className="text-indigo-500 hover:text-indigo-700">
             Register
           </a>
         </p>
