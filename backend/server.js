@@ -7,7 +7,7 @@ require('dotenv').config();
 const app = express();
 
 app.use(cors({
-  origin: "https://jlabs-exam.onrender.com",
+  origin: "https://jlabs-exam-exijyl5w3-pyto-ps-projects.vercel.app",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
 }));
