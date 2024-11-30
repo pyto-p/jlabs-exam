@@ -5,12 +5,28 @@ import { useNavigate } from 'react-router-dom';
 function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState(null); 
+  const [passwordError, setPasswordError] = useState(null); 
+  const [serverError, setServerError] = useState(null);
   const navigate = useNavigate();
+
+  const handlePasswordChange = (e) => {
+    const value = e.target.value;
+    setPassword(value);
+
+    if (value.length < 6) {
+      setPasswordError('Password must be at least 6 characters long');
+    } else {
+      setPasswordError(null);
+    }
+  };
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setError(null); 
+    setServerError(null); 
+
+    if (passwordError) {
+      return;
+    }
 
     try {
       const { token } = await ky
@@ -20,10 +36,9 @@ function LoginPage() {
         .json();
 
       localStorage.setItem('token', token);
-
       navigate('/home');
     } catch (err) {
-      setError('Invalid email or password');
+      setServerError('Invalid email or password');
     }
   };
 
@@ -32,7 +47,8 @@ function LoginPage() {
       <form onSubmit={handleLogin} className="bg-white p-8 rounded-lg shadow-md">
         <h2 className="text-2xl font-bold mb-6 text-center text-indigo-600">Login</h2>
 
-
+        {serverError && <p className="text-red-500 mb-4">{serverError}</p>}
+        
         <input
           type="email"
           placeholder="Email"
@@ -45,14 +61,18 @@ function LoginPage() {
           type="password"
           placeholder="Password"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={handlePasswordChange}
           className="block w-full p-2 mb-4 border rounded"
           required
           />
         
-        {error && <p className="text-red-500 mb-4 text-center">{error}</p>}
+        {passwordError && <p className="text-red-500 mb-4 text-center">{passwordError}</p>}
 
-        <button type="submit" className="w-full bg-indigo-500 text-white py-2 rounded hover:bg-indigo-600">
+        <button 
+          type="submit" 
+          className="w-full bg-indigo-500 text-white py-2 rounded hover:bg-indigo-600"
+          disabled={passwordError}
+        >
           Login
         </button>
         <p className="text-sm mt-4">
