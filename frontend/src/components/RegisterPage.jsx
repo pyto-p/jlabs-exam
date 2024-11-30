@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ky from 'ky';
 import { useNavigate } from 'react-router-dom';
 
 function RegisterPage() {
@@ -13,7 +14,11 @@ function RegisterPage() {
     setError(null); 
 
     try {
-      console.log('Registering user:', { name, email, password });
+      await ky.post('http://localhost:8888/api/auth/register', {
+        json: { name, email, password }
+      });
+
+      navigate('/');
     } catch (err) {
       setError('Error registering user');
     }
